@@ -9,6 +9,7 @@ pipeline {
         }
         stage('TEST') {
             steps {
+                sh 'echo "moi"'
                 sh 'flutter test'
             }
         }
