@@ -1,0 +1,147 @@
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Image from assets"),
+        ),
+        body: Image.asset('./images/delivered.jpg'),
+        drawer: Drawer(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'data',
+                style: TextStyle(fontFamily: 'BebasNeue-Regular', fontSize: 20),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.4
+flutter:
+  uses-material-design: true
+
+  assets:
+    - images/delivered.jpg
+    - images/packing.png
+    - images/seller.png
+    - images/splash.jpg
+  fonts:
+    - family: BebasNeue
+      fonts:
+        - asset: assets/fonts/BebasNeue-Regular.ttf
+    - family: Lobster
+      fonts:    
+        - asset: assets/fonts/Lobster-Regular.ttf
+    - family: Signatra
+      fonts: 
+        - asset: assets/fonts/Signatra.ttf
+    - family: VarelaRound
+      fonts:      
+        - asset: assets/fonts/VarelaRound-Regular.ttf 
+
+
+
+child: SplashScreen(seconds: 8,
+        navigateAfterSeconds:AuthScreen(),
+        title: new Text(
+          'SplashScreen Example',
+          style: new TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20.0,
+              color: Colors.white),
+              
+        ),
+        image: new Image.asset('./images/splash.jpg'),
+        backgroundColor: Colors.blue,
+        styleTextUnderTheLoader: new TextStyle(),
+        loaderColor: Colors.white),
+
+
+
+
+
+        children: [
+                Image.asset('./images/splash.jpg'),
+                const SizedBox(height: 10),
+                const Padding(
+                  padding: EdgeInsets.all(18.0),
+                  child: Text(
+                    'Sell Food Online',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 40,
+                      fontFamily: 'Signatra',
+                      letterSpacing: 3,
+                    ),
+                  ),
+                )
+              ],
+
+
+  Future splashScreenApp() async {
+    var FlutterNativeSplash;
+
+    Navigator.push(
+        context, MaterialPageRoute(builder: (c) => const AuthScreen()));
+    await Future.delayed(const Duration(seconds: 5));
+
+    FlutterNativeSplash.remove();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    splashScreenApp();
+  }
+
+
+  class pickImage(){
+
+     File? image;
+
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      if(image == null) return;
+
+      final imageTemp = File(image.path);
+
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
+  Future pickImageC() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.camera);
+
+      if(image == null) return;
+
+      final imageTemp = File(image.path);
+
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
+  }
+
+  showDialog() {
+    
+  }
