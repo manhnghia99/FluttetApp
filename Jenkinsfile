@@ -9,7 +9,7 @@ pipeline {
         }
         stage('TEST') {
             steps {
-                sh 'flutter test'
+                sh '/var/jenkins_home/workspace/FlutterApp@tmp/durable-7e089de1/script.sh'
             }
         }
         stage('BUILD') {
