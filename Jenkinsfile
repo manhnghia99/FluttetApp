@@ -15,10 +15,10 @@ pipeline {
         }
         stage('BUILD') {
             steps {
-                sh '
+                sh '''
                   #!/bin/sh
                   flutter build apk --debug
-                  '
+                  '''
             }
         }
         stage('DISTRIBUTE') {
