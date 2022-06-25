@@ -9,16 +9,16 @@ pipeline {
         }
         stage('TEST') {
             steps {
-                sh 'flutter --version'
+            
                 sh 'flutter test'
             }
         }
         stage('BUILD') {
             steps {
-                sh '''
+                sh '
                   #!/bin/sh
                   flutter build apk --debug
-                  '''
+                  '
             }
         }
         stage('DISTRIBUTE') {
